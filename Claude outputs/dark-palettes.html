@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Palette Options</title>
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 2rem 1rem;
+    background: #f0ece6;
+    color: #242220;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.5;
+  }
+
+  .page { max-width: 1100px; margin: 0 auto; }
+
+  h1 { font-size: 1.5rem; margin: 0 0 0.25rem; }
+  .sub { margin: 0 0 2rem; color: #8a8279; font-size: 0.92rem; }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .option { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .option-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+  .option-name { font-size: 1.05rem; font-weight: bold; margin: 0; }
+  .option-note { font-size: 0.85rem; color: #8a8279; margin: 0; }
+
+  /* the miniature page preview */
+  .preview {
+    background: var(--shell);
+    padding: 1.25rem;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .mini-header {
+    background: var(--shell);
+    border: 6px dotted var(--accent);
+    border-radius: 12px;
+    padding: 0.75rem;
+    text-align: center;
+    color: var(--ink);
+  }
+  .mini-header strong { display: block; font-size: 1rem; }
+  .mini-header em { color: var(--muted); font-size: 0.8rem; }
+
+  .mini-about { color: var(--ink); }
+  .mini-about h4 { margin: 0 0 0.25rem; font-size: 0.9rem; }
+  .mini-about p { margin: 0; color: var(--muted); font-size: 0.8rem; }
+
+  .mini-cards { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+  .mini-card {
+    flex: 1 1 140px;
+    background: var(--paper);
+    border: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 0.6rem;
+    color: var(--ink);
+  }
+  .mini-card h5 { margin: 0 0 0.25rem; font-size: 0.85rem; }
+  .mini-card p { margin: 0 0 0.4rem; color: var(--muted); font-size: 0.75rem; }
+  .mini-card a { color: var(--accent); font-size: 0.75rem; }
+  .swatch-img {
+    height: 34px;
+    border-radius: 4px;
+    background: var(--rule);
+    margin-top: 0.4rem;
+  }
+
+  .mini-footer {
+    text-align: center;
+    color: var(--ink);
+    border-top: 1px solid var(--rule);
+    padding-top: 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .chip {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: Menlo, Consolas, monospace;
+    font-size: 0.68rem;
+    color: #6f675e;
+    background: #faf7f2;
+    border: 1px solid #ddd6cc;
+    border-radius: 4px;
+    padding: 0.2rem 0.4rem;
+  }
+  .dot {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.25);
+  }
+
+  code {
+    display: block;
+    font-family: Menlo, Consolas, monospace;
+    font-size: 0.7rem;
+    line-height: 1.7;
+    background: #faf7f2;
+    border-left: 3px solid #7a5c3e;
+    padding: 0.7rem 0.9rem;
+    white-space: pre;
+    overflow-x: auto;
+    color: #4a443d;
+  }
+
+  /* ---------- the palettes ---------- */
+  .warm-charcoal {
+    --ink: #f2ede6; --paper: #2a2724; --shell: #1e1c1a;
+    --accent: #c9a77c; --muted: #a49b90; --rule: #3d3833;
+  }
+  .ink-brass {
+    --ink: #e8eaee; --paper: #1e2127; --shell: #14161a;
+    --accent: #d4a94f; --muted: #969ba5; --rule: #2e333b;
+  }
+  .plum {
+    --ink: #f2e7ec; --paper: #271d23; --shell: #1b1418;
+    --accent: #d99ab0; --muted: #a8949c; --rule: #3a2c33;
+  }
+  .forest {
+    --ink: #e8eee9; --paper: #1c2620; --shell: #131a16;
+    --accent: #8fbf9f; --muted: #93a398; --rule: #2b3a32;
+  }
+  .gallery {
+    --ink: #ededed; --paper: #1a1a1a; --shell: #0d0d0d;
+    --accent: #e0c060; --muted: #9a9a9a; --rule: #2b2b2b;
+  }
+
+  .note {
+    margin-top: 2.5rem;
+    padding: 1.1rem 1.4rem;
+    background: #faf7f2;
+    border-left: 5px solid #7a5c3e;
+    font-size: 0.88rem;
+  }
+  .note p { margin: 0 0 0.7rem; }
+  .note p:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Dark palette options</h1>
+  <p class="sub">Each preview is a miniature of your actual page — header, About Me, two cards, footer.</p>
+
+  <div class="options">
+
+    <!-- 1 -->
+    <div class="option">
+      <div class="option-head">
+        <p class="option-name">1 · Warm charcoal</p>
+        <p class="option-note">what you have now — closest to your light theme</p>
+      </div>
+      <div class="preview warm-charcoal">
+        <div class="mini-header"><strong>Welcome to my Personal Portfolio</strong><em>(Please have a seat!)</em></div>
+        <div class="mini-about"><h4>About Me:</h4><p>Powered by curiosity, funded by sheer luck and rage.</p></div>
+        <div class="mini-cards">
+          <div class="mini-card"><h5>KFUPM Bachlour</h5><p>Currently fighting for my degree.</p><a href="#">You dont know KFUPM?!</a><div class="swatch-img"></div></div>
+          <div class="mini-card"><h5>Art Portfolio</h5><p>A hobby I've had for too long.</p><a href="#">for the CURIOUS</a><div class="swatch-img"></div></div>
+        </div>
+        <div class="mini-footer">Contact Me !</div>
+      </div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:#f2ede6"></span>--ink #f2ede6</span>
+        <span class="chip"><span class="dot" style="background:#2a2724"></span>--paper #2a2724</span>
+        <span class="chip"><span class="dot" style="background:#1e1c1a"></span>--shell #1e1c1a</span>
+        <span class="chip"><span class="dot" style="background:#c9a77c"></span>--accent #c9a77c</span>
+        <span class="chip"><span class="dot" style="background:#a49b90"></span>--muted #a49b90</span>
+        <span class="chip"><span class="dot" style="background:#3d3833"></span>--rule #3d3833</span>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="option">
+      <div class="option-head">
+        <p class="option-name">2 · Ink &amp; brass</p>
+        <p class="option-note">cool blue-grey base, warm gold accent — the sharpest contrast</p>
+      </div>
+      <div class="preview ink-brass">
+        <div class="mini-header"><strong>Welcome to my Personal Portfolio</strong><em>(Please have a seat!)</em></div>
+        <div class="mini-about"><h4>About Me:</h4><p>Powered by curiosity, funded by sheer luck and rage.</p></div>
+        <div class="mini-cards">
+          <div class="mini-card"><h5>KFUPM Bachlour</h5><p>Currently fighting for my degree.</p><a href="#">You dont know KFUPM?!</a><div class="swatch-img"></div></div>
+          <div class="mini-card"><h5>Art Portfolio</h5><p>A hobby I've had for too long.</p><a href="#">for the CURIOUS</a><div class="swatch-img"></div></div>
+        </div>
+        <div class="mini-footer">Contact Me !</div>
+      </div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:#e8eaee"></span>--ink #e8eaee</span>
+        <span class="chip"><span class="dot" style="background:#1e2127"></span>--paper #1e2127</span>
+        <span class="chip"><span class="dot" style="background:#14161a"></span>--shell #14161a</span>
+        <span class="chip"><span class="dot" style="background:#d4a94f"></span>--accent #d4a94f</span>
+        <span class="chip"><span class="dot" style="background:#969ba5"></span>--muted #969ba5</span>
+        <span class="chip"><span class="dot" style="background:#2e333b"></span>--rule #2e333b</span>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="option">
+      <div class="option-head">
+        <p class="option-name">3 · Plum</p>
+        <p class="option-note">soft and a bit theatrical — pairs well with art</p>
+      </div>
+      <div class="preview plum">
+        <div class="mini-header"><strong>Welcome to my Personal Portfolio</strong><em>(Please have a seat!)</em></div>
+        <div class="mini-about"><h4>About Me:</h4><p>Powered by curiosity, funded by sheer luck and rage.</p></div>
+        <div class="mini-cards">
+          <div class="mini-card"><h5>KFUPM Bachlour</h5><p>Currently fighting for my degree.</p><a href="#">You dont know KFUPM?!</a><div class="swatch-img"></div></div>
+          <div class="mini-card"><h5>Art Portfolio</h5><p>A hobby I've had for too long.</p><a href="#">for the CURIOUS</a><div class="swatch-img"></div></div>
+        </div>
+        <div class="mini-footer">Contact Me !</div>
+      </div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:#f2e7ec"></span>--ink #f2e7ec</span>
+        <span class="chip"><span class="dot" style="background:#271d23"></span>--paper #271d23</span>
+        <span class="chip"><span class="dot" style="background:#1b1418"></span>--shell #1b1418</span>
+        <span class="chip"><span class="dot" style="background:#d99ab0"></span>--accent #d99ab0</span>
+        <span class="chip"><span class="dot" style="background:#a8949c"></span>--muted #a8949c</span>
+        <span class="chip"><span class="dot" style="background:#3a2c33"></span>--rule #3a2c33</span>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="option">
+      <div class="option-head">
+        <p class="option-name">4 · Forest</p>
+        <p class="option-note">muted green — calm, least common choice</p>
+      </div>
+      <div class="preview forest">
+        <div class="mini-header"><strong>Welcome to my Personal Portfolio</strong><em>(Please have a seat!)</em></div>
+        <div class="mini-about"><h4>About Me:</h4><p>Powered by curiosity, funded by sheer luck and rage.</p></div>
+        <div class="mini-cards">
+          <div class="mini-card"><h5>KFUPM Bachlour</h5><p>Currently fighting for my degree.</p><a href="#">You dont know KFUPM?!</a><div class="swatch-img"></div></div>
+          <div class="mini-card"><h5>Art Portfolio</h5><p>A hobby I've had for too long.</p><a href="#">for the CURIOUS</a><div class="swatch-img"></div></div>
+        </div>
+        <div class="mini-footer">Contact Me !</div>
+      </div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:#e8eee9"></span>--ink #e8eee9</span>
+        <span class="chip"><span class="dot" style="background:#1c2620"></span>--paper #1c2620</span>
+        <span class="chip"><span class="dot" style="background:#131a16"></span>--shell #131a16</span>
+        <span class="chip"><span class="dot" style="background:#8fbf9f"></span>--accent #8fbf9f</span>
+        <span class="chip"><span class="dot" style="background:#93a398"></span>--muted #93a398</span>
+        <span class="chip"><span class="dot" style="background:#2b3a32"></span>--rule #2b3a32</span>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="option">
+      <div class="option-head">
+        <p class="option-name">5 · Gallery</p>
+        <p class="option-note">near-black, gold accent — makes images the focus</p>
+      </div>
+      <div class="preview gallery">
+        <div class="mini-header"><strong>Welcome to my Personal Portfolio</strong><em>(Please have a seat!)</em></div>
+        <div class="mini-about"><h4>About Me:</h4><p>Powered by curiosity, funded by sheer luck and rage.</p></div>
+        <div class="mini-cards">
+          <div class="mini-card"><h5>KFUPM Bachlour</h5><p>Currently fighting for my degree.</p><a href="#">You dont know KFUPM?!</a><div class="swatch-img"></div></div>
+          <div class="mini-card"><h5>Art Portfolio</h5><p>A hobby I've had for too long.</p><a href="#">for the CURIOUS</a><div class="swatch-img"></div></div>
+        </div>
+        <div class="mini-footer">Contact Me !</div>
+      </div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:#ededed"></span>--ink #ededed</span>
+        <span class="chip"><span class="dot" style="background:#1a1a1a"></span>--paper #1a1a1a</span>
+        <span class="chip"><span class="dot" style="background:#0d0d0d"></span>--shell #0d0d0d</span>
+        <span class="chip"><span class="dot" style="background:#e0c060"></span>--accent #e0c060</span>
+        <span class="chip"><span class="dot" style="background:#9a9a9a"></span>--muted #9a9a9a</span>
+        <span class="chip"><span class="dot" style="background:#2b2b2b"></span>--rule #2b2b2b</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <p><strong>To use one:</strong> copy its six values into your <code style="display:inline;border:0;padding:0;background:none">[data-theme="dark"]</code> block. The variable names never change — only the values — so nothing else in your stylesheet needs touching.</p>
+    <p><strong>Two rules if you'd rather invent your own:</strong> keep <code style="display:inline;border:0;padding:0;background:none">--paper</code> slightly <em>lighter</em> than <code style="display:inline;border:0;padding:0;background:none">--shell</code>, so cards still look like they sit on top of the page — the same relationship as your light theme. And lighten the accent: a colour that reads well on cream looks muddy on near-black, which is why <code style="display:inline;border:0;padding:0;background:none">#7a5c3e</code> becomes something like <code style="display:inline;border:0;padding:0;background:none">#c9a77c</code>.</p>
+    <p><strong>Avoid pure white text on pure black.</strong> It glares and causes halation on most screens. Every option here uses an off-white around #e8–#f2 for exactly that reason — worth one sentence in your technical documentation.</p>
+  </div>
+
+</div>
+</body>
+</html>
