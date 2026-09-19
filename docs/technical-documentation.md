@@ -240,3 +240,7 @@ across files, and matches the requirements the assignment asks for.
 - **Images are not optimised.** Adding `width`, `height` and `loading="lazy"`
   attributes would reduce layout shift and defer offscreen loading.
 
+---
+## 11. Testing
+
+**Testings:** Tested on Chrome and Safari, both of whihc passed. some bugs resurfaced when window sizing became under 400, were corrected and bugs were resolved. (the flex box was not in use, added the width scaling back)
